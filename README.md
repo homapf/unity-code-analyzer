@@ -1,6 +1,6 @@
-## Mono.Reflection
+## Homa Games Code Reflection
 
-Mono.Reflection is an helper library to complement the System.Reflection and System.Reflection.Emit namespaces.
+Unity code analyzer tool. Based on https://github.com/jbevain/mono.reflection.
 
 It works on both Mono >= 2.8 and .net >= 4.0.
 

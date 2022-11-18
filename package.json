@@ -1,0 +1,18 @@
+{
+  "name": "com.homagames.code-analyzer",
+  "version": "1.0.0",
+  "displayName": "[Homa Games] Code Analyzer",
+  "description": "Unity code analyzer tool. Based on https://github.com/jbevain/mono.reflection.",
+  "unity": "2019.1",
+  "keywords": [
+    "code",
+    "compiler",
+    "analyzer"
+  ],
+  "author": {
+    "name": "Homa Games",
+    "url": "https://github.com/homapf/unity-code-analyzer.git"
+  },
+  "type": "tool",
+  "samples": []
+}
