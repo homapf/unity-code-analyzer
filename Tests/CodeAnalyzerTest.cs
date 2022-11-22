@@ -16,6 +16,19 @@ namespace HomaGames.CodeAnalyzer.Tests
             var usages = CodeAnalyzer.FindUsageOfMethod(method,typeof(CodeAnalyzerTest).Assembly);
             
             Assert.AreEqual(6,usages.Count);
+            string[] methodNames = new[]
+            {
+                "get_ThatProperty",
+                "set_ThatProperty",
+                "ThatMethodName",
+                "<LambdaCalls>b__0",
+                "<LambdaCalls>b__1",
+                ".ctor"
+            };
+            for (int i = 0; i < usages.Count; i++)
+            {
+                Assert.True(methodNames[i] == usages[i].Name);
+            }
         }
         
         [Test]

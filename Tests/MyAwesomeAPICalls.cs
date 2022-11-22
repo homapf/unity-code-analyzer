@@ -33,15 +33,17 @@ namespace HomaGames.CodeAnalyzer.Tests
         
         public void LambdaCalls()
         {
+            MyAwesomeAPI api = new MyAwesomeAPI();
             var lambda = new Action(() =>
             {
-                MyAwesomeAPI api = new MyAwesomeAPI();
                 api.MyAwesomeMethod();
                 var nestedLambda = new Action(() =>
                 {
                     api.MyAwesomeMethod();
                 });
+                nestedLambda.Invoke(); // avoid stripping
             });
+            lambda.Invoke(); // avoid lambda stripping
         }
     }
 }
