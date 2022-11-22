@@ -2,9 +2,19 @@
 
 Unity code analyzer tool. Based on https://github.com/jbevain/mono.reflection.
 
-It works on both Mono >= 2.8 and .net >= 4.0.
 
 ## API
+
+***
+
+```csharp
+public static class CodeAnalyzer {
+	public static List<MethodBase> FindUsageOfMethod(MethodInfo method, Assembly assembly) {}
+	public static List<MethodBase> FindMethodUsageInsideMethodBody(MethodInfo method, MethodBase bodyMethod) {}
+}
+```
+
+> Use these to find usage of a method inside any Assembly or other Method.
 
 ***
 
