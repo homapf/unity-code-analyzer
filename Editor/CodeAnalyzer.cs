@@ -13,15 +13,18 @@ namespace HomaGames.CodeAnalyzer
         /// </summary>
         /// <param name="method">The method to find usages of</param>
         /// <param name="assembly">The assembly to look inside</param>
+        /// <param name="bindingFlags">Allowed visibility for scanned methods</param>
         /// <returns>The list of methods using the method</returns>
         [PublicAPI]
-        public static List<MethodBase> FindUsageOfMethod(MethodInfo method, Assembly assembly)
+        public static List<MethodBase> FindUsageOfMethod(MethodInfo method, Assembly assembly,
+            BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic |
+                                        BindingFlags.Static)
         {
             List<MethodBase> methods = new List<MethodBase>();
             foreach (var type in assembly.GetTypes())
             {
                 List<MethodBase> methodBases = new List<MethodBase>();
-                methodBases.AddRange(type.GetMethods());
+                methodBases.AddRange(type.GetMethods(bindingFlags));
                 methodBases.AddRange(type.GetConstructors());
                 foreach (var bodyMethod in methodBases)
                 {
@@ -70,7 +73,7 @@ namespace HomaGames.CodeAnalyzer
                         methodsUsingIt.Add(bodyMethod);
                     }
                     // This is a lambda declaration
-                    else if (methodInfo.Name.Contains('<') && currentDepth < maxSearchDepth)
+                    else if (methodInfo.Name.Contains("<") && currentDepth < maxSearchDepth)
                     {
                         currentDepth++;
                         FindMethodUsageInsideMethodBodyRecursive(method, methodInfo, methodsUsingIt, currentDepth);
